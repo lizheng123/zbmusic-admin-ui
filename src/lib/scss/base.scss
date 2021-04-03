@@ -1,0 +1,219 @@
+
+$c_blue:#4072EE;
+$c_red:#FF6463;
+$c_green:#00C297;
+$c_yellow:#FFC500;
+
+$c_grey:#797979;
+$c_1:#292E33;
+$c_0:#1F2327;
+$c_black:#16191C;
+
+$c_white:#fff;
+
+//背景色
+//蓝色
+.bgBlue{
+	background-color: $c_blue;
+}
+//红色
+.bgRed{
+	background-color: $c_red;
+}
+//绿色
+.bgGreen{
+	background-color: $c_green;
+}
+//黄色
+.bgYellow{
+	background-color: $c_yellow;
+}
+//背景深色
+.bgColor0{
+	background-color: $c_0;
+}
+//背景次深色
+.bgColor1{
+	background-color: $c_1;
+}
+
+
+//字体颜色
+//蓝色
+.fBlue{
+	color: $c_blue;
+}
+//红色
+.fRed{
+	color: $c_red;
+}
+//绿色
+.fGreen{
+	color: $c_green;
+}
+//黄色
+.fYellow{
+	color: $c_yellow;
+}
+//深色
+.fColor0{
+	color: $c_0;
+}
+//次深色
+.fColor0{
+	color: $c_1;
+}
+//灰色
+.fGrey{
+	color: $c_grey;
+}
+//黑色
+.fBlack{
+	color: $c_black;
+}
+
+//margin-left
+.ml5{
+	margin-left:5px
+}
+.ml10{
+	margin-left:10px
+}
+.ml15{
+	margin-left:15px
+}
+.ml20{
+	margin-left:20px
+}
+.ml25{
+	margin-left:25px
+}
+.ml30{
+	margin-left:30px
+}
+.ml35{
+	margin-left:35px
+}
+.ml40{
+	margin-left:40px
+}
+//margin-right
+.mr5{
+	margin-right:5px
+}
+.mr10{
+	margin-right:10px
+}
+.mr15{
+	margin-right:15px
+}
+.mr20{
+	margin-right:20px
+}
+.mr25{
+	margin-right:25px
+}
+.mr30{
+	margin-right:30px
+}
+.mr35{
+	margin-right:35px
+}
+.mr40{
+	margin-right:40px
+}
+//margin-top
+.mt5{
+	margin-top:5px
+}
+.mt10{
+	margin-top:10px
+}
+.mt15{
+	margin-top:15px
+}
+.mt20{
+	margin-top:20px
+}
+.mt25{
+	margin-top:25px
+}
+.mt30{
+	margin-top:30px
+}
+.mt35{
+	margin-top:35px
+}
+.mt40{
+	margin-top:40px
+}
+//margin-bottom
+.mb5{
+	margin-bottom:5px
+}
+.mb10{
+	margin-bottom:10px
+}
+.mb15{
+	margin-bottom:15px
+}
+.mb20{
+	margin-bottom:20px
+}
+.mb25{
+	margin-bottom:25px
+}
+.mb30{
+	margin-bottom:30px
+}
+.mb35{
+	margin-bottom:35px
+}
+.mb40{
+	margin-bottom:40px
+}
+
+ /*滚动条样式*/
+ ::-webkit-scrollbar {
+    width: 2px;
+	height: 3px;
+	box-sizing: border-box;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+        width: 3px;
+        height: 3px;
+        background-color:#eaeaea;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+		border-radius:3px;
+		box-sizing: border-box;
+}
+/*滑块 */
+::-webkit-scrollbar-thumb {
+        background-color:#5288ec;
+        background-clip:padding-box;
+        // max-height:10px;
+        width: 1px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+		border-radius:3px;
+		box-sizing: border-box;
+}
+// 滑块鼠标经过
+::-webkit-scrollbar-thumb:hover {
+        background-color:#fff;
+}
+// ::-webkit-scrollbar-thumb:window-inactive {
+//     background: rgba(255,0,0,0.4);
+// }
+
+.mouse-over:hover{
+	box-sizing: border-box;
+	opacity: .8;
+}
+
+.small-title{
+	font-size: 16px;
+	font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}

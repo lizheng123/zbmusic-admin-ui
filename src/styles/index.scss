@@ -1,0 +1,168 @@
+// scoped 子组件会继承父组件的scopedid
+// http://www.luyixian.cn/javascript_show_158671.aspx
+//全局样式定义
+@import 'css-global.scss';
+
+@mixin flex_rcc {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flex_rcf {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+@mixin flex_rfc {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+@mixin flex_rff {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+@mixin flex_rec {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+@mixin flex_rsc {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+@mixin flex_ccc {
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flex_cfc {
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+}
+@mixin flex_cec {
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-end;
+    align-items: center;
+}
+@mixin flex_csc {
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+//flex-wrap: wrap; 是否换行
+//https://blog.csdn.net/cc18868876837/article/details/88138057
+//align-items属性是针对单独的每一个flex子项起作用，它的基本单位是每一个子项，在所有情况下都有效果（当然要看具体的属性值）。
+//align-content属性是将flex子项作为一个整体起作用，它的基本单位是子项构成的行，只在两种情况下有效果：①子项多行且flex容器高度固定 ②子项单行，flex容器高度固定且设置了flex-wrap:wrap;
+//注：这里的高度固定的意思实际上是让flex容器在交叉轴上有多余的空间。
+@mixin flex(
+    $fd:row,
+    $jc:center,
+    $ai:center,
+    $fw:nowrap,
+    $ac:flex-start,
+) {
+    display:flex;
+    flex-direction:$fd;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-wrap: $fw;
+    align-content: $ac;
+}
+
+.flex_rcc{
+    @include flex_rcc()
+}
+.flex_rcf{
+    @include flex_rcf()
+}
+.flex_rfc{
+    @include flex($jc:flex-start)
+}
+.flex_rec{
+    @include flex($jc:flex-end)
+}
+.flex_rsc{
+    @include flex($jc:space-between)
+}
+
+
+.flex_ccc{
+    @include flex_ccc()
+}
+.flex_cfc{
+    @include flex($jc:flex-start)
+}
+.flex_cec{
+    @include flex($jc:flex-end)
+}
+.flex_csc{
+    @include flex($jc:space-between)
+}
+
+
+@mixin dw(
+    $p:2,
+    $top:null,
+    $right:null,
+    $bottom:null,
+    $left:null
+
+){
+    @if $p==1 {
+        position: relative;
+    } @else if $p==2{
+        position: absolute;
+    } @else if $p==3{
+        position: fixed;
+    }
+    @if $top {
+        top:$top;
+    }
+    @if $right {
+        right:$right;
+    }
+    @if $bottom {
+        bottom:$bottom;
+    }
+    @if $left {
+        left:$left;
+    }
+}
+
+@mixin drag($d) {
+    @if $d {
+        -webkit-app-region:drag;
+    } @else {
+        -webkit-app-region:no-drag;
+        -webkit-user-drag: none;
+    }
+}
+
+@mixin textNoSelect() {
+/*设置文字不能被选中     以下为css样式*/
+   -webkit-user-select:none;
+   -moz-user-select:none;
+   -ms-user-select:none;
+   user-select:none;
+}
+
+.el-menu.el-menu--horizontal {
+    border-bottom: none;
+}

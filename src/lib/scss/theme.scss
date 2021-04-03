@@ -1,0 +1,636 @@
+// http://www.wenliku.com/sheji/13617.html
+// http://www.wenliku.com/color/
+
+//静谧
+$theme1_primary:#329291;
+$theme1_contentBg:#e3ebed;
+$theme1_bottomBg:#fff;
+$theme1_bottomCtrSpan:#333;
+$theme1_bottomProcessBg:#c19454;
+$theme1_soundBg:#fff;
+$theme1_menuNameDefColor:#666;
+$theme1_menuNameActColor:#328291;
+$theme1_soundFontColor:#333;
+$theme1_soundKjFontColor:#c19454;
+$theme1_soundBorderColor:#328291;
+// $theme2_contentBg:#251333;
+// $theme2_soundBg:#2e1b3d;
+// $theme2_bottomBg:#ffc600;
+// $theme2_yellow:#ffc600;
+// $theme2_orange:#ff6900;
+// $theme2_red:#EB1A08;
+// $theme2_blue:#00b1c9;
+
+//深蓝
+$theme2_primary:#cf5d7a;
+$theme2_contentBg:#202343;
+$theme2_soundBg:#2b2e4e;
+$theme2_bottomBg:#fff;
+$theme2_bottomCtrSpan:#333;
+$theme2_bottomProcessBg:#cf5d7a;
+$theme2_menuNameDefColor:#8e9cc9;
+$theme2_menuNameActColor:#cf5d7a;
+$theme2_soundFontColor:#fff;
+$theme2_soundKjFontColor:#fff;
+$theme2_soundBorderColor:#cf5d7a;
+
+//酷炫黑
+$theme3_primary:#cf5d7a;
+$theme3_contentBg:#191b1f;
+$theme3_soundBg:#222225;
+$theme3_bottomBg:#222225;
+$theme3_bottomCtrSpan:#eaeaea;
+$theme3_bottomProcessBg:#9d1a1a;
+$theme3_menuNameDefColor:#828385;
+$theme3_menuNameActColor:#dcdde4;
+$theme3_soundFontColor:#dcdde4;
+$theme3_soundKjFontColor:#dcdde4;
+$theme3_soundBorderColor:#9d1a1a;
+
+//温馨小窝
+$theme4_primary:#ff6a5d;
+$theme4_contentBg:#fff2d0;
+$theme4_soundBg:#ffffff;
+$theme4_bottomBg:#f6baba;
+$theme4_bottomCtrSpan:#333;
+$theme4_bottomProcessBg:#ff6a5d;
+$theme4_menuNameDefColor:#916d6a;
+$theme4_menuNameActColor:#ff6a5d;
+$theme4_soundFontColor:#333;
+$theme4_soundKjFontColor:#f69522;
+$theme4_soundBorderColor:#ff6a5d;
+
+//现代简约
+$theme5_primary:#3b3835;
+$theme5_contentBg:#f2f2f1;
+$theme5_soundBg:#fff;
+$theme5_soundFontColor:#3b3835;
+$theme5_soundKjFontColor:#9fa6a1;
+$theme5_soundBorderColor:#3b3835;
+$theme5_bottomBg:#9fa6a1;
+$theme5_bottomCtrSpan:#3b3835;
+$theme5_bottomProcessBg:#9fa6a1;
+$theme5_menuNameDefColor:#807064;
+$theme5_menuNameActColor:#3b3835;
+
+//青春活力
+$theme6_primary:#2587ee;
+$theme6_contentBg:#3986eb;
+$theme6_soundBg:#fff;
+$theme6_soundFontColor:#333;
+$theme6_soundKjFontColor:rgb(199, 97, 97);
+$theme6_soundBorderColor:#34d1ec;
+$theme6_bottomBg:#fff;
+$theme6_bottomCtrSpan:#333;
+$theme6_bottomProcessBg:#ecb234;
+$theme6_menuNameDefColor:#94c3f5;
+$theme6_menuNameActColor:#fcec62;
+
+
+
+@mixin elementStyle {
+    [data-theme="theme1"] {
+        .el-slider__bar{
+            background: $theme1_primary !important;
+        }
+        .el-slider__button{
+            border: solid 2px $theme1_primary !important
+        }
+        .el-switch.is-checked .el-switch__core {
+            border-color: $theme1_primary;
+            background-color: $theme1_primary;
+        }
+        .el-select-dropdown__item.selected {
+            color: $theme1_primary;
+            font-weight: bold;
+        }
+        .el-dropdown-menu__item:not(.is-disabled):hover, .el-dropdown-menu__item:focus{ 
+            // background-color: $theme1_primary;
+            color:$theme1_primary
+        }
+        /*滑块 */
+        ::-webkit-scrollbar-thumb {
+            background-color:#ced6d8;
+        }
+        /* 滚动槽 */
+        ::-webkit-scrollbar-track {
+            background-color:#e3ebed;
+        }
+    }
+    [data-theme="theme2"] {
+        .el-slider__bar{
+            background: $theme2_primary !important;
+        }
+        .el-slider__button{
+            border: solid 2px $theme2_primary !important
+        }
+        .el-switch.is-checked .el-switch__core {
+            border-color: $theme2_primary;
+            background-color: $theme2_primary;
+        }
+        .el-select-dropdown__item.selected {
+            color: $theme2_primary;
+            font-weight: bold;
+        }
+        .el-dropdown-menu__item:not(.is-disabled):hover, .el-dropdown-menu__item:focus{
+            // background-color: $theme2_primary;
+            color:$theme2_primary
+        }
+        /*滑块 */
+        ::-webkit-scrollbar-thumb {
+            background-color:#2f335f;
+        }
+        /* 滚动槽 */
+        ::-webkit-scrollbar-track {
+            background-color:#202343;
+        }
+    }
+    [data-theme="theme3"] {
+        .el-slider__bar{
+            background: $theme3_primary !important;
+        }
+        .el-slider__button{
+            border: solid 2px $theme3_primary !important
+        }
+        .el-switch.is-checked .el-switch__core {
+            border-color: $theme3_primary;
+            background-color: $theme3_primary;
+        }
+        .el-select-dropdown__item.selected {
+            color: $theme3_primary;
+            font-weight: bold;
+        }
+        .el-dropdown-menu__item:not(.is-disabled):hover, .el-dropdown-menu__item:focus{
+            // background-color: $theme3_primary;
+            color:$theme3_primary
+        }
+        /*滑块 */
+        ::-webkit-scrollbar-thumb {
+            background-color:#383838;
+        }
+        /* 滚动槽 */
+        ::-webkit-scrollbar-track {
+            background-color:#141414;
+        }
+    }
+    [data-theme="theme4"] {
+        .el-slider__bar{
+            background: $theme4_primary !important;
+        }
+        .el-slider__button{
+            border: solid 2px $theme4_primary !important
+        }
+        .el-switch.is-checked .el-switch__core {
+            border-color: $theme4_primary;
+            background-color: $theme4_primary;
+        }
+        .el-select-dropdown__item.selected {
+            color: $theme4_primary;
+            font-weight: bold;
+        }
+        .el-dropdown-menu__item:not(.is-disabled):hover, .el-dropdown-menu__item:focus{
+            // background-color: $theme4_primary;
+            color:$theme4_primary
+        }
+        /*滑块 */
+        ::-webkit-scrollbar-thumb {
+            background-color:#e0d4b4;
+        }
+    }
+    [data-theme="theme5"] {
+        .el-slider__bar{
+            background: $theme5_primary !important;
+        }
+        .el-slider__button{
+            border: solid 2px $theme5_primary !important
+        }
+        .el-switch.is-checked .el-switch__core {
+            border-color: $theme5_primary;
+            background-color: $theme5_primary;
+        }
+        .el-select-dropdown__item.selected {
+            color: $theme5_primary;
+            font-weight: bold;
+        }
+        .el-dropdown-menu__item:not(.is-disabled):hover, .el-dropdown-menu__item:focus{
+            // background-color: $theme5_primary;
+            color:$theme5_primary
+        }
+        /*滑块 */
+        ::-webkit-scrollbar-thumb {
+            background-color:#d8d8d7;
+        }
+    }
+    [data-theme="theme6"] {
+        .el-slider__bar{
+            background: $theme6_primary !important;
+        }
+        .el-slider__button{
+            border: solid 2px $theme6_primary !important
+        }
+        .el-switch.is-checked .el-switch__core {
+            border-color: $theme6_primary;
+            background-color: $theme6_primary;
+        }
+        .el-select-dropdown__item.selected {
+            color: $theme6_primary;
+            font-weight: bold;
+        }
+        .el-dropdown-menu__item:not(.is-disabled):hover, .el-dropdown-menu__item:focus{
+            // background-color: $theme6_primary;
+            color:$theme6_primary
+        }
+        /*滑块 */
+        ::-webkit-scrollbar-thumb {
+            background-color:#1b69bd;
+        }
+        /* 滚动槽 */
+        ::-webkit-scrollbar-track {
+            background-color:#3a94f5;
+        }
+    }
+
+}
+
+@mixin AppTitle {
+    [data-theme="theme1"] & {
+        color: $theme1_menuNameDefColor !important;
+    }
+    [data-theme="theme2"] & {
+        color: $theme2_menuNameDefColor !important;
+    }
+    [data-theme="theme3"] & {
+        color: $theme3_menuNameDefColor !important;
+    }
+    [data-theme="theme4"] & {
+        color: $theme4_menuNameDefColor !important;
+    }
+    [data-theme="theme5"] & {
+        color: $theme5_menuNameDefColor !important;
+    }
+    [data-theme="theme6"] & {
+        color: $theme6_menuNameDefColor !important;
+    }
+}
+
+@mixin svgDefColor {
+    [data-theme="theme1"] & {
+        fill: $theme1_menuNameDefColor !important;
+    }
+    [data-theme="theme2"] & {
+        fill: $theme2_menuNameDefColor !important;
+    }
+    [data-theme="theme3"] & {
+        fill: $theme3_menuNameDefColor !important;
+    }
+    [data-theme="theme4"] & {
+        fill: $theme4_menuNameDefColor !important;
+    }
+    [data-theme="theme5"] & {
+        fill: $theme5_menuNameDefColor !important;
+    }
+    [data-theme="theme6"] & {
+        fill: $theme6_menuNameDefColor !important;
+    }
+}
+
+@mixin svgActColor {
+    [data-theme="theme1"] & {
+        fill: $theme1_menuNameActColor !important;
+    }
+    [data-theme="theme2"] & {
+        fill: $theme2_menuNameActColor !important;
+    }
+    [data-theme="theme3"] & {
+        fill: $theme3_menuNameActColor !important;
+    }
+    [data-theme="theme4"] & {
+        fill: $theme4_menuNameActColor !important;
+    }
+    [data-theme="theme5"] & {
+        fill: $theme5_menuNameActColor !important;
+    }
+    [data-theme="theme6"] & {
+        fill: $theme6_menuNameActColor !important;
+    }
+}
+
+@mixin menuNameStyle {
+    [data-theme="theme1"] & {
+        color: $theme1_menuNameDefColor !important;
+        // font-weight: bold;
+        .nameActive{
+            color: $theme1_menuNameActColor !important;
+        }
+    }
+    [data-theme="theme2"] & {
+        color: $theme2_menuNameDefColor !important;
+        // font-weight: bold;
+        .nameActive{
+            color: $theme2_menuNameActColor !important;
+        }
+    }
+    [data-theme="theme3"] & {
+        color: $theme3_menuNameDefColor !important;
+        // font-weight: bold;
+        .nameActive{
+            color: $theme3_menuNameActColor !important;
+        }
+    }
+    [data-theme="theme4"] & {
+        color: $theme4_menuNameDefColor !important;
+        // font-weight: bold;
+        .nameActive{
+            color: $theme4_menuNameActColor !important;
+        }
+    }
+    [data-theme="theme5"] & {
+        color: $theme5_menuNameDefColor !important;
+        // font-weight: bold;
+        .nameActive{
+            color: $theme5_menuNameActColor !important;
+        }
+    }
+    [data-theme="theme6"] & {
+        color: $theme6_menuNameDefColor !important;
+        // font-weight: bold;
+        .nameActive{
+            color: $theme6_menuNameActColor !important;
+        }
+    }
+}
+
+@mixin contentStyle {
+    [data-theme="theme1"] & {
+        background-color: $theme1_contentBg !important;
+        // box-shadow: 0px 0px 8px 4px #24242442;
+        border-radius: 10px;
+        border-bottom: 1px solid #eaeaea;
+    }
+    [data-theme="theme2"] & {
+        background-color: $theme2_contentBg !important;
+        // box-shadow: 0px 0px 8px 4px #e01f1f42;
+        border-radius: 10px;
+        border-bottom: 1px solid #eaeaea;
+    }
+    [data-theme="theme3"] & {
+        background-color: $theme3_contentBg !important;
+        //box-shadow: 0px 0px 8px 4px #e01f1f42;
+        border-radius: 10px;
+        border-bottom: 1px solid #eaeaea;
+    }
+    [data-theme="theme4"] & {
+        background-color: $theme4_contentBg !important;
+        // box-shadow: 0px 0px 8px 4px #24242442;
+        border-radius: 10px;
+        border-bottom: 1px solid #eaeaea;
+    }
+    [data-theme="theme5"] & {
+        background-color: $theme5_contentBg !important;
+        // box-shadow: 0px 0px 8px 4px #24242442;
+        border-radius: 10px;
+        border-bottom: 1px solid #eaeaea;
+    }
+    [data-theme="theme6"] & {
+        background-color: $theme6_contentBg !important;
+        // box-shadow: 0px 0px 8px 4px #24242442;
+        border-radius: 10px;
+        border-bottom: 1px solid #eaeaea;
+    }
+}
+
+@mixin MenuTitle {
+    [data-theme="theme1"] & {
+        color: $theme1_menuNameDefColor !important;
+    }
+    [data-theme="theme2"] & {
+        color: $theme2_menuNameDefColor !important;
+    }
+    [data-theme="theme3"] & {
+        color: $theme3_menuNameDefColor !important;
+    }
+    [data-theme="theme4"] & {
+        color: $theme4_menuNameDefColor !important;
+    }
+    [data-theme="theme5"] & {
+        color: $theme5_menuNameDefColor !important;
+    }
+    [data-theme="theme6"] & {
+        color: $theme6_menuNameDefColor !important;
+    }
+}
+
+@mixin bottomStyle {
+    [data-theme="theme1"] & {
+        background-color: $theme1_bottomBg !important;
+        // border-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        // background-image: linear-gradient(120deg, $theme2_blue 10%, $theme2_yellow 38%, $theme2_orange 60%);
+        .process{
+            background: $theme1_bottomProcessBg !important;
+        }
+
+        .controller{
+            .left,.right{
+                span{
+                    color: $theme1_bottomCtrSpan !important;
+                }
+            }
+        }
+    }
+    [data-theme="theme2"] & {
+        background-color: $theme2_bottomBg !important;
+        // border-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        // background-image: linear-gradient(120deg, $theme2_blue 10%, $theme2_yellow 38%, $theme2_orange 60%);
+        
+        .process{
+            background: $theme2_bottomProcessBg !important;
+        }
+        
+        .controller{
+            .left,.right{
+                span{
+                    color: $theme2_bottomCtrSpan !important;
+                }
+            }
+        }
+    }
+    [data-theme="theme3"] & {
+        background-color: $theme3_bottomBg !important;
+        // border-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        // background-image: linear-gradient(120deg, $theme2_blue 10%, $theme2_yellow 38%, $theme2_orange 60%);
+        
+        .process{
+            background: $theme3_bottomProcessBg !important;
+        }
+
+        .controller{
+            .left,.right{
+                span{
+                    color: $theme3_bottomCtrSpan !important;
+                }
+            }
+        }
+    }
+    [data-theme="theme4"] & {
+        background-color: $theme4_bottomBg !important;
+        // border-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        // background-image: linear-gradient(120deg, $theme2_blue 10%, $theme2_yellow 38%, $theme2_orange 60%);
+        
+        .process{
+            background: $theme4_bottomProcessBg !important;
+        }
+
+        .controller{
+            .left,.right{
+                span{
+                    color: $theme4_bottomCtrSpan !important;
+                }
+            }
+        }
+    }
+    [data-theme="theme5"] & {
+        background-color: $theme5_bottomBg !important;
+        // border-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        // background-image: linear-gradient(120deg, $theme2_blue 10%, $theme2_yellow 38%, $theme2_orange 60%);
+        
+        .process{
+            background: $theme5_bottomProcessBg !important;
+        }
+
+        .controller{
+            .left,.right{
+                span{
+                    color: $theme5_bottomCtrSpan !important;
+                }
+            }
+        }
+    }
+    [data-theme="theme6"] & {
+        background-color: $theme6_bottomBg !important;
+        // border-radius: 10px;
+        // border-bottom-left-radius: 10px;
+        // border-bottom-right-radius: 10px;
+        // background-image: linear-gradient(120deg, $theme2_blue 10%, $theme2_yellow 38%, $theme2_orange 60%);
+        
+        .process{
+            background: $theme6_bottomProcessBg !important;
+        }
+
+        .controller{
+            .left,.right{
+                span{
+                    color: $theme6_bottomCtrSpan !important;
+                }
+            }
+        }
+    }
+}
+
+
+@mixin soundStyle {
+    [data-theme="theme1"] & {
+        background-color: $theme1_soundBg !important;
+        color: $theme1_soundFontColor !important;
+        &:hover{
+            // background-color: #e2af13;
+            // box-shadow: 0px 3px 4px #fff;
+            border-style: solid;
+            border-width: 2px;
+            border-color: $theme1_soundBorderColor !important;
+        }
+        .kj{
+            color: $theme1_soundKjFontColor;
+
+        }
+    }
+    [data-theme="theme2"] & {
+        background-color: $theme2_soundBg !important;
+        color: $theme2_soundFontColor !important;
+        &:hover{
+            // background-color: #e2af13;
+            // box-shadow: 0px 3px 4px #fff;
+            border-style: solid;
+            border-width: 2px;
+            border-color: $theme2_soundBorderColor !important;
+        }
+        .kj{
+            color: $theme2_soundKjFontColor;
+
+        }
+    }
+    [data-theme="theme3"] & {
+        background-color: $theme3_soundBg !important;
+        color: $theme3_soundFontColor !important;
+        &:hover{
+            // background-color: #e3af13;
+            // box-shadow: 0px 3px 4px #fff;
+            border-style: solid;
+            border-width: 2px;
+            border-color: $theme3_soundBorderColor !important;
+        }
+        .kj{
+            color: $theme3_soundKjFontColor;
+
+        }
+        
+    }
+    [data-theme="theme4"] & {
+        background-color: $theme4_soundBg !important;
+        color: $theme4_soundFontColor !important;
+        &:hover{
+            // background-color: #e3af13;
+            // box-shadow: 0px 3px 4px #fff;
+            border-style: solid;
+            border-width: 2px;
+            border-color: $theme4_soundBorderColor !important;
+        }
+        .kj{
+            color: $theme4_soundKjFontColor;
+
+        }
+        
+    }
+    [data-theme="theme5"] & {
+        background-color: $theme5_soundBg !important;
+        color: $theme5_soundFontColor !important;
+        &:hover{
+            // background-color: #e3af13;
+            // box-shadow: 0px 3px 4px #fff;
+            border-style: solid;
+            border-width: 2px;
+            border-color: $theme5_soundBorderColor !important;
+        }
+        .kj{
+            color: $theme5_soundKjFontColor;
+
+        }
+        
+    }
+    [data-theme="theme6"] & {
+        background-color: $theme6_soundBg !important;
+        color: $theme6_soundFontColor !important;
+        &:hover{
+            // background-color: #e3af13;
+            // box-shadow: 0px 3px 4px #fff;
+            border-style: solid;
+            border-width: 2px;
+            border-color: $theme6_soundBorderColor !important;
+        }
+        .kj{
+            color: $theme6_soundKjFontColor;
+
+        }
+        
+    }
+}
+

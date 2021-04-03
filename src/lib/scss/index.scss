@@ -1,0 +1,105 @@
+@import 'base.scss';
+// scoped 子组件会继承父组件的scopedid
+// http://www.luyixian.cn/javascript_show_158671.aspx
+
+//全局样式定义
+$leftSide_w:80px; //侧边栏宽度
+$leftSide_out_w:10px; //侧边漏出宽度
+
+@mixin flex_rcc {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flex_ccc {
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+//flex-wrap: wrap; 是否换行
+//https://blog.csdn.net/cc18868876837/article/details/88138057
+//align-items属性是针对单独的每一个flex子项起作用，它的基本单位是每一个子项，在所有情况下都有效果（当然要看具体的属性值）。
+//align-content属性是将flex子项作为一个整体起作用，它的基本单位是子项构成的行，只在两种情况下有效果：①子项多行且flex容器高度固定 ②子项单行，flex容器高度固定且设置了flex-wrap:wrap;
+//注：这里的高度固定的意思实际上是让flex容器在交叉轴上有多余的空间。
+@mixin flex(
+    $fd:row,
+    $jc:center,
+    $ai:center,
+    $fw:nowrap,
+    $ac:flex-start,
+) {
+    display:flex;
+    flex-direction:$fd;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-wrap: $fw;
+    align-content: $ac;
+}
+
+.flex_rcc{
+    @include flex_rcc()
+}
+.flex_rfc{
+    @include flex($jc:flex-start)
+}
+.flex_rec{
+    @include flex($jc:flex-end)
+}
+.flex_ccc{
+    @include flex_ccc()
+}
+.flex_cfc{
+    @include flex($jc:flex-start)
+}
+
+
+@mixin dw(
+    $p:1,
+    $top:0,
+    $right:0,
+    $bottom:0,
+    $left:0,
+
+){
+    @if $p==1 {
+        position: relative;
+    } @else if $p==2{
+        position: absolute;
+    } @else if $p==3{
+        position: fixed;
+    }
+    @if $top !=none {
+        top:$top;
+    }
+    @if $right !=none {
+        right:$right;
+    }
+    @if $bottom!=none {
+        bottom:$bottom;
+    }
+    @if $left!=none {
+        left:$left;
+    }
+}
+
+@mixin drag($d) {
+    @if $d {
+        -webkit-app-region:drag;
+    } @else {
+        -webkit-app-region:no-drag;
+        -webkit-user-drag: none;
+    }
+}
+
+@mixin textNoSelect() {
+/*设置文字不能被选中     以下为css样式*/
+   -webkit-user-select:none;
+   -moz-user-select:none;
+   -ms-user-select:none;
+   user-select:none;
+}
+
+@import '@/lib/scss/theme.scss';
