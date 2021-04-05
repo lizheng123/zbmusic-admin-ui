@@ -11,32 +11,37 @@
     </el-row>
     <!-- 产品列表 -->
     <el-card class="box-card">
-      <el-row :gutter="20">
-        <el-col :span="6">
+      <el-row :gutter="20" type="flex" align="middle" justify="start">
+        <el-col :span="4">
           <el-input placeholder="请输入内容" v-model="search_op.search_name" @change="getList">
-            <template slot="prepend">名称</template>
+            <template slot="prepend">用户名</template>
           </el-input>
         </el-col>
-        <el-col :span="3">
-          <el-select v-model="search_op.supplier_id" placeholder="请选择供应商" @change="getList" style="width:100%">
-            <el-option
-              v-for="item in suppliers"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id">
-            </el-option>
-          </el-select>
+        <el-col :span="4">
+          <el-input placeholder="请输入内容" v-model="search_op.email" @change="getList">
+            <template slot="prepend">邮箱</template>
+          </el-input>
         </el-col>
         <el-col :span="4">
-          <el-select v-model="search_op.tags" multiple placeholder="请选择标签" @change="getList" style="width:100%">
-            <el-option
-              v-for="item in tags"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id">
-            </el-option>
-          </el-select>
+          <el-input placeholder="请输入内容" v-model="search_op.taobao_account" @change="getList">
+            <template slot="prepend">淘宝昵称</template>
+          </el-input>
         </el-col>
+        <el-col :span="1.5">
+          近期登录
+        </el-col>
+        <el-col :span="3">
+          <el-date-picker
+            @change="getList"
+            v-model="search_op.recent_login_range"
+            type="daterange"
+            value-format="timestamp"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期">
+          </el-date-picker>
+        </el-col>
+
       </el-row>
 
       <el-table
