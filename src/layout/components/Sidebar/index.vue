@@ -18,6 +18,17 @@
             <el-menu-item index="/user">用户列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
+
+        <el-submenu index="2">
+          <template #title>
+            <i class="el-icon-box"></i>
+            <span>音效管理</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/sounds">音效列表</el-menu-item>
+            <el-menu-item index="/sounds/category">音效分类</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
       </el-menu>
     </el-scrollbar>
   </div>

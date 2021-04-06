@@ -18,42 +18,37 @@
           <el-card class="box-card">
             <el-row :gutter="20">
               <!-- 左边 -->
-              <el-col :span="7">
+              <el-col :span="4">
                 <div class="part-info">
                   <div class="title">基本</div>
                   <div class="info">用户信息</div>
                 </div>
               </el-col>
               <!-- 右边 -->
-              <el-col :span="17">
+              <el-col :span="20">
                 <el-row :gutter="20">
                   <el-col :span="12">
-                      <el-input placeholder="请输入内容" v-model="form.username" :disabled="true">
-                        <template slot="prepend">用户名</template>
+                      <el-input placeholder="请输入内容" v-model="form.id" :disabled="true">
+                        <template slot="prepend">ID</template>
                       </el-input>
                   </el-col>
                   <el-col :span="12">
-                      <el-input placeholder="请输入内容" v-model="form.email" :disabled="true">
-                        <template slot="prepend">邮箱</template>
-                      </el-input>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="20" class="mt10">
-                  <el-col :span="12">
-                      <el-input placeholder="请输入内容" v-model="form.password">
-                        <template slot="prepend">密码</template>
-                      </el-input>
-                  </el-col>
-                  <el-col :span="12">
-                      <el-input placeholder="请输入内容" v-model="form.taobao_account">
-                        <template slot="prepend">淘宝用户名</template>
+                      <el-input placeholder="请输入内容" v-model="form.download_times" :disabled="true">
+                        <template slot="prepend">下载次数</template>
                       </el-input>
                   </el-col>
                 </el-row>
                 <el-row :gutter="20" class="mt10">
                   <el-col :span="24">
-                      <el-input placeholder="请输入内容" v-model="form.activation_code" :disabled="true">
-                        <template slot="prepend">激活码</template>
+                      <el-input placeholder="请输入内容" v-model="form.name">
+                        <template slot="prepend">名称</template>
+                      </el-input>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="20" class="mt10">
+                  <el-col :span="24">
+                      <el-input placeholder="请输入内容" v-model="form.path" :disabled="false">
+                        <template slot="prepend">地址</template>
                       </el-input>
                   </el-col>
                 </el-row>
@@ -62,7 +57,7 @@
                   style="margin-top:10px"
                   :autosize="{ minRows: 4, maxRows: 6}"
                   placeholder="请输入内容"
-                  v-model="form.tips">
+                  v-model="form.discription">
                 </el-input>
               </el-col>
             </el-row>
@@ -79,46 +74,21 @@
               </el-col>
               <!-- 右边 -->
               <el-col :span="21">
-                <el-table
-                  :data="devices_list"
-                  style="width: 100%">
-                  <el-table-column
-                    prop="platform"
-                    label="平台"
-                    width="100">
-                  </el-table-column>
-                  <el-table-column
-                    prop="w_cpu_processorid"
-                    label="cupID"
-                    width="180">
-                  </el-table-column>
-                  <el-table-column
-                    prop="w_os_name"
-                    label="系统名称"
-                    width="180">
-                  </el-table-column>
-                  <el-table-column
-                    prop="w_computer_name"
-                    label="电脑名称"
-                    width="180">
-                  </el-table-column>
-                  <el-table-column
-                    prop="w_baseboard_sn"
-                    label="主板序列号">
-                  </el-table-column>
-                  <el-table-column
-                    prop="m_system_sn"
-                    label="系统序列号">
-                  </el-table-column>
-                  <el-table-column
-                    prop="m_hardware_uuid"
-                    label="主板uuid">
-                  </el-table-column>
-                  <el-table-column
-                    prop="m_model_identifier"
-                    label="设备型号">
-                  </el-table-column>
-                </el-table>
+                <el-upload
+                  class="upload-demo"
+                  drag
+                  action=""
+                  ref="upload"
+                  :http-request="uploadFile"
+                  :auto-upload="true"
+                  name="imgfile"
+                  @on-change="imgUploadChange"
+                  :data="{a:1,b:2}"
+                  >
+                  <i class="el-icon-upload"></i>
+                  <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                  <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                </el-upload>
               </el-col>
             </el-row>
           </el-card>
@@ -128,9 +98,9 @@
         <el-col :span="6">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <span>账号状态</span>
+              <span>状态</span>
             </div>
-            <p class="p-extra mb5">账号启用状态</p>
+            <p class="p-extra mb5">启用状态</p>
             <el-select v-model="form.status" placeholder="请选择账号状态" style="width:100%" class="mb10">
               <el-option
                 v-for="item in status_arr"
@@ -139,13 +109,13 @@
                 :value="item.value">
               </el-option>
             </el-select>
-            <p class="p-extra mb5">账号激活状态</p>
-            <el-select v-model="form.activation_status" placeholder="请选择激活状态" style="width:100%">
+            <p class="p-extra mb5">分类</p>
+            <el-select v-model="form.classify" placeholder="请选择分类" style="width:100%">
               <el-option
-                v-for="item in status_arr"
-                :key="item.value"
+                v-for="item in category_list"
+                :key="item.id"
                 :label="item.name"
-                :value="item.value">
+                :value="item.id">
               </el-option>
             </el-select>
 
@@ -183,7 +153,8 @@ export default {
           {name:'禁用/未激活',value:0},
           {name:'所有',value:null},
         ],
-        devices_list:[]
+        devices_list:[],
+        category_list:[]
       }
     },
     methods:{
@@ -197,23 +168,56 @@ export default {
           console.log('err',err)
         })
       },
-      readOneUser(){
+      readOneSound(){
         let p = this.$route.params.obj;
         if(!p) return;
         console.log(p)
-        apis.user.readOneUser({id:p.id}).then(res=>{
+        apis.sounds.readOneSound({id:p.id}).then(res=>{
           console.log('res',res)
           // this.form_loading = false;
-          this.form = res.data.data.base_data
-          this.devices_list = res.data.data.devices
+          this.form = res.data.data
         }).catch(err=>{
           this.form_loading = false;
           console.log('err',err)
         })
       },
+      getCategoryList(){
+        apis.category.read(0).then(res=>{
+          console.log('res',res)
+          this.category_list = res.data.data
+        }).catch(err=>{
+          console.log('err',err)
+        })
+      },
+      uploadFile(params) {
+        console.log("uploadFile", params);
+        // return;
+        // const isLt2M = file.size / 1024 / 1024 < 2;
+
+        // 通过 FormData 对象上传文件
+        var formData = new FormData();
+        formData.append("sound", params.file);
+        formData.append("a", 1);
+        formData.append("b", 2);
+
+        // if (!isLt2M) {
+        //   this.$message.error("请上传2M以下的.xlsx文件");
+        //   return false;
+        // }
+
+        apis.upload.up(formData).then((res)=>{
+          console.log('res',res)
+        }).catch(err=>{
+          console.log('err',err)
+        })
+      },
+      imgUploadChange(){
+
+      }
     },
     mounted(){
-        this.readOneUser()
+        this.getCategoryList()
+        this.readOneSound();
     },
     computed:{
 

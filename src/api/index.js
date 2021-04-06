@@ -10,6 +10,7 @@ import attr from '@/api/attr.js';
 import user from '@/api/user.js';
 import sku from '@/api/sku.js';
 import upload from '@/api/upload.js';
+import sounds from '@/api/sounds.js';
 
 //wms模块接口
 
@@ -24,6 +25,7 @@ export default {
   attr,
   user,
   sku,
-  upload
+  upload,
+  sounds
 
 }

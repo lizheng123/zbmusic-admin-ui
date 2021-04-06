@@ -15,7 +15,7 @@ import request from '@/api/request.js'; //请求对象
 		return request({url: `/admin_user/read`,params:params, method: 'GET'})
 	},
 	readOneUser (params){
-		return request({url: `/user/ReadOneUser`,params:params, method: 'GET'})
+		return request({url: `/admin_user/ReadOneUser`,params:params, method: 'GET'})
 	},
  }
  

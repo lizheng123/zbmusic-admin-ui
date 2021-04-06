@@ -9,7 +9,7 @@ var instance = axios.create({
  const apis = {
 	
 	up (params){
-		return instance.post(`http://jxc.com/upload/up`,params)
+		return instance.post(`http://zbmusic.com/upload/up`,params)
 	},
  }
  

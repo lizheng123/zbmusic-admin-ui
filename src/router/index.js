@@ -33,8 +33,59 @@ const routes = [
         component: () => import('@/views/user/list/index'),
         meta: {title: '用户列表', icon: 'list'}
       },
+      {
+        path: 'updateUser',
+        name: 'updateUser',
+        component: () => import('@/views/user/list/update'),
+        meta: {title: '用户修改', icon: 'list'}
+      },
     ]
-  }
+  },
+  {
+    path: '/sounds',
+    name: 'sounds',
+    component: Layout,
+    redirect: '/sounds/soundsList',
+    meta: {title: '音效', icon: 'sounds'},
+    children: [
+      //音效列表
+      {
+        path: 'soundsList',
+        name: 'soundsList',
+        component: () => import('@/views/sounds/list/index'),
+        meta: {title: '音效列表', icon: 'list'}
+      },
+      {
+        path: 'updateSound',
+        name: 'updateSound',
+        component: () => import('@/views/sounds/list/update'),
+        meta: {title: '修改音效', icon: 'list'}
+      },
+
+      //产品分类
+      {
+        path: 'category',
+        name: 'category',
+        component: () => import('@/views/sounds/category/index'),
+        meta: {title: '分类列表', icon: 'product-add'}
+      },
+      
+      {
+        path: 'addCategory',
+        name: 'addCategory',
+        component: () => import('@/views/sounds/category/add'),
+        meta: {title: '添加分类', icon: 'product-add'}
+      },
+
+      {
+        path: 'updateCategory',
+        name: 'updateCategory',
+        component: () => import('@/views/sounds/category/update'),
+        meta: {title: '修改分类', icon: 'product-add'}
+      },
+
+    ]
+  },
 
 ]
 

@@ -9,31 +9,22 @@
         </div>
       </el-col>
     </el-row>
+    <aplayer :audio="audio" ref="aplayer"/>
     <!-- 产品列表 -->
     <el-card class="box-card">
       <el-row :gutter="20" type="flex" align="middle" justify="start">
         <el-col :span="4">
           <el-input placeholder="请输入内容" v-model="search_op.search_name" @change="getList" clearable>
-            <template slot="prepend">用户名</template>
-          </el-input>
-        </el-col>
-        <el-col :span="4">
-          <el-input placeholder="请输入内容" v-model="search_op.email" @change="getList" clearable>
-            <template slot="prepend">邮箱</template>
-          </el-input>
-        </el-col>
-        <el-col :span="4">
-          <el-input placeholder="请输入内容" v-model="search_op.taobao_account" @change="getList" clearable>
-            <template slot="prepend">淘宝昵称</template>
+            <template slot="prepend">音效名</template>
           </el-input>
         </el-col>
         <el-col :span="1.5">
-          近期登录
+          创建时间
         </el-col>
         <el-col :span="3">
           <el-date-picker
             @change="getList"
-            v-model="search_op.recent_login_range"
+            v-model="search_op.create_time_range"
             type="daterange"
             value-format="timestamp"
             range-separator="至"
@@ -41,26 +32,11 @@
             end-placeholder="结束日期">
           </el-date-picker>
         </el-col>
-
       </el-row>
 
       <el-row :gutter="20" type="flex" align="middle" justify="start" class="mt15">
-        <el-col :span="1.5">
-         近期注册
-        </el-col>
-        <el-col :span="6.5">
-          <el-date-picker
-            @change="getList"
-            v-model="search_op.recent_register_range"
-            type="daterange"
-            value-format="timestamp"
-            range-separator="至"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期">
-          </el-date-picker>
-        </el-col>
-        <el-col :span="3">
-          <el-select v-model="search_op.activation_status" placeholder="请选择激活状态" @change="getList">
+        <el-col :span="4">
+          <el-select v-model="search_op.status" placeholder="请选择音效状态" @change="getList">
             <el-option
               v-for="item in status_arr"
               :key="item.value"
@@ -69,23 +45,13 @@
             </el-option>
           </el-select>
         </el-col>
-        <el-col :span="3">
-          <el-select v-model="search_op.status" placeholder="请选择账号状态" @change="getList">
+        <el-col :span="4">
+          <el-select v-model="search_op.category_id" placeholder="请选择音效状态" @change="getList">
             <el-option
-              v-for="item in status_arr"
-              :key="item.value"
+              v-for="item in category_list"
+              :key="item.id"
               :label="item.name"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-col>
-        <el-col :span="3">
-          <el-select v-model="search_op.platform" placeholder="请选择注册平台" @change="getList">
-            <el-option
-              v-for="item in platform_arr"
-              :key="item.value"
-              :label="item.name"
-              :value="item.value">
+              :value="item.id">
             </el-option>
           </el-select>
         </el-col>
@@ -122,38 +88,20 @@
                   </el-row>
                 </template>
               </el-table-column>
-              </el-table>
-
+            </el-table>
           </template>
         </el-table-column>
-        <!-- <el-table-column
+
+        <el-table-column
           prop="name"
-          label="缩略图"
-          >
-          <template slot-scope="scope">
-            <fileThum></fileThum>
-          </template>
-        </el-table-column> -->
-
-        <el-table-column
-          prop="username"
-          width="100"
-          label="用户名">
+          width="200"
+          label="音效名">
         </el-table-column>
 
         <el-table-column
-          prop="email"
+          prop="classify_name"
           width="200"
-          label="邮箱">
-          <template slot-scope="scope">
-            {{scope.row.email}}
-            <template v-if="scope.row.email_activation_status==1">
-              认证
-            </template>
-            <template v-if="scope.row.email_activation_status==0">
-              未认证
-            </template>
-          </template>
+          label="分类">
         </el-table-column>
 
         <el-table-column
@@ -172,57 +120,15 @@
         </el-table-column>
 
         <el-table-column
-          prop="activation_status"
-          label="激活"
+          prop="create_time_str"
           width="80"
-          >
-          <template slot-scope="scope">
-            <template v-if="scope.row.activation_status==1">
-              <el-tag type="info" style="margin-right:5px">激活</el-tag>
-            </template>
-            <template v-if="scope.row.activation_status==0">
-              <el-tag type="warning" style="margin-right:5px">未激活</el-tag>
-            </template>
-          </template>
+          label="创建时间">
         </el-table-column>
 
         <el-table-column
-          prop="taobao_account"
-          width="80"
-          label="淘宝账号">
-        </el-table-column>
-
-        <el-table-column
-          prop="registered_time"
-          width="100"
-          label="注册时间">
-        </el-table-column>
-
-        <el-table-column
-          prop="recent_login_time"
-          width="100"
-          label="最近登录">
-        </el-table-column>
-
-        <el-table-column
-          prop="register_platform"
-          width="65"
-          label="注册平台">
-        </el-table-column>
-
-        <el-table-column
-          prop="allow_device_num"
-          width="120"
-          label="设备">
-          <template slot-scope="scope">
-            允许 {{scope.row.allow_device_num}} 使用 {{scope.row.user_dev_num}}
-          </template>
-        </el-table-column>
-
-        <el-table-column
-          prop="platform_num"
-          width="80"
-          label="允许平台数">
+          prop="path"
+          width="200"
+          label="路径">
         </el-table-column>
 
         <el-table-column label="操作">
@@ -231,6 +137,10 @@
               size="mini"
               icon="el-icon-edit"
               @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <el-button
+              size="mini"
+              icon="el-icon-video-play"
+              @click="play(scope.$index, scope.row)">播放</el-button>
             <!-- <el-button
               size="mini"
               type="danger"
@@ -258,6 +168,7 @@ import apis from "@/api/index"
 // import csv from "@/lib/arrObjToCsv.js"
 // import util from "@/lib/util.js"
 // import fileThum from "@/components/FileThum.vue"
+// const audio = new Audio();
 export default {
     components:{
       Title,
@@ -266,6 +177,13 @@ export default {
     name:'User',
     data(){
       return {
+        audio: {
+            name: '',
+            artist: '蜗牛音效',
+            url: '',
+            cover: '', // prettier-ignore
+            // lrc: 'https://cdn.moefe.org/music/lrc/thing.lrc',
+        },
         status_arr:[
           {name:'启用/激活',value:1},
           {name:'禁用/未激活',value:0},
@@ -277,6 +195,7 @@ export default {
           {name:'所有',value:''},
         ],
         list:[],
+        category_list:[],
         page_num:1,
         page_size:5,
         total:0,
@@ -293,7 +212,7 @@ export default {
           page_size:this.page_size
         }
         Object.assign(op,this.search_op)
-        apis.user.read(op).then(res=>{
+        apis.sounds.read(op).then(res=>{
           console.log('res',res)
           this.list = (res.data.data.list || []).map((v)=>{
             v.skus = [];
@@ -317,16 +236,16 @@ export default {
           console.log('err',err)
         })
       },
-      getSupplierList(){
-        apis.supplier.read().then(res=>{
+      getCategoryList(){
+        apis.category.read(0).then(res=>{
           console.log('res',res)
-          this.suppliers = res.data.data
+          this.category_list = res.data.data
         }).catch(err=>{
           console.log('err',err)
         })
       },
       handleEdit(index, row) {
-        this.$router.push({name:'updateUser',params:{obj:row}})
+        this.$router.push({name:'updateSound',params:{obj:row}})
         console.log(index, row);
       },
       handleDelete(index, row) {
@@ -342,8 +261,12 @@ export default {
         this.getList(false)
         console.log(`当前页: ${val}`);
       },
-      readOneProductSkuInfo(){
-
+      play(i,r){
+        
+        this.audio.url = `http://zbmusic.com/sounds/2020/${r.path}`;
+        this.audio.name = `${r.name}`;
+        this.$refs.aplayer.play();
+        // audio.play();
       },
       tableExpandChange(row,expand){
         apis.sku.readOneProductSkuInfo({'id':row.id}).then(res=>{
@@ -361,8 +284,8 @@ export default {
     },
     mounted(){
       this.getList()
-      this.getTagList()
-      this.getSupplierList()
+      this.getCategoryList()
+      // this.getSupplierList()
 
     }
 }
