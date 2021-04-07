@@ -2,10 +2,10 @@
   <div class="product-list">
     <!-- 标题与保存按钮 -->
     <el-row>
-      <el-col :span="12"><Title title="用户列表"></Title></el-col>
+      <el-col :span="12"><Title title="音效列表"></Title></el-col>
       <el-col :span="12">
         <div style="width:100%;height:60px;padding-right:15px;box-sizing:border-box" class="flex_rec">
-          <el-button type="primary" @click="addProduct">添加用户</el-button>
+          <el-button type="primary" @click="addObj">添加音效</el-button>
         </div>
       </el-col>
     </el-row>
@@ -245,7 +245,7 @@ export default {
         })
       },
       handleEdit(index, row) {
-        this.$router.push({name:'updateSound',params:{obj:row}})
+        this.$router.push({name:'updateSound',params:{obj:row},query:{id:row.id}})
         console.log(index, row);
       },
       handleDelete(index, row) {
@@ -278,8 +278,8 @@ export default {
         })
         console.log(row,expand)
       },
-      addProduct(){
-        this.$router.push({name:'addProduct'})
+      addObj(){
+        this.$router.push({name:'addSound'})
       }
     },
     mounted(){

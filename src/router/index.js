@@ -61,8 +61,14 @@ const routes = [
         component: () => import('@/views/sounds/list/update'),
         meta: {title: '修改音效', icon: 'list'}
       },
+      {
+        path: 'addSound',
+        name: 'addSound',
+        component: () => import('@/views/sounds/list/add'),
+        meta: {title: '添加音效', icon: 'list'}
+      },
 
-      //产品分类
+      //分类
       {
         path: 'category',
         name: 'category',

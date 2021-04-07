@@ -2,7 +2,7 @@
   <div class="add-pro-wrapper">
     <!-- 标题与保存按钮 -->
     <el-row>
-      <el-col :span="12"><Title title="修改用户"></Title></el-col>
+      <el-col :span="12"><Title title="修改音效"></Title></el-col>
       <el-col :span="12">
         <div style="width:100%;height:60px;padding-right:15px;box-sizing:border-box" class="flex_rec">
           <el-button type="primary" @click="save">保存</el-button>
@@ -21,7 +21,7 @@
               <el-col :span="4">
                 <div class="part-info">
                   <div class="title">基本</div>
-                  <div class="info">用户信息</div>
+                  <div class="info">音效信息</div>
                 </div>
               </el-col>
               <!-- 右边 -->
@@ -68,8 +68,8 @@
               <!-- 左边 -->
               <el-col :span="3">
                 <div class="part-info">
-                  <div class="title">设备列表</div>
-                  <div class="info">管理设备</div>
+                  <div class="title">文件</div>
+                  <div class="info">文件上传</div>
                 </div>
               </el-col>
               <!-- 右边 -->
@@ -80,17 +80,23 @@
                   action=""
                   ref="upload"
                   :http-request="uploadFile"
-                  :auto-upload="true"
+                  :auto-upload="false"
                   name="imgfile"
+                  :multiple="false"
                   @on-change="imgUploadChange"
+                  :on-preview="handlePreview"
                   :data="{a:1,b:2}"
                   >
                   <i class="el-icon-upload"></i>
                   <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-                  <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                  <div class="el-upload__tip" slot="tip">只能上传mp3/wav/ogg文件，且不超过10m</div>
                 </el-upload>
+                <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
               </el-col>
             </el-row>
+          </el-card>
+          <el-card class="box-card">
+            <aplayer :audio="audio" ref="aplayer"/>
           </el-card>
         </el-col>
 
@@ -119,11 +125,8 @@
               </el-option>
             </el-select>
 
-            <el-input placeholder="请输入内容" v-model="form.platform_num" style="width:100%;margin-top:10px">
-              <template slot="prepend">允许平台数</template>
-            </el-input>
-            <el-input placeholder="请输入内容" v-model="form.allow_device_num" style="width:100%;margin-top:10px">
-              <template slot="prepend">允许单平台最大设备数</template>
+            <el-input placeholder="请输入内容" v-model="form.wnb" style="width:100%;margin-top:10px">
+              <template slot="prepend">下载所需币</template>
             </el-input>
           </el-card>
         </el-col>
@@ -154,23 +157,30 @@ export default {
           {name:'所有',value:null},
         ],
         devices_list:[],
-        category_list:[]
+        category_list:[],
+        audio: {
+            name: '',
+            artist: '蜗牛音效',
+            url: '',
+            cover: '', // prettier-ignore
+            // lrc: 'https://cdn.moefe.org/music/lrc/thing.lrc',
+        },
       }
     },
     methods:{
       save(){
         console.log(this.form)
-        apis.user.update(this.form).then(res=>{
+        apis.sounds.update(this.form).then(res=>{
           console.log('res',res)
-          this.$router.push({name:'user'})
+          this.$router.push({name:'soundsList'})
         }).catch(err=>{
           this.$message({msg:err,type:'error'})
           console.log('err',err)
         })
       },
       readOneSound(){
-        let p = this.$route.params.obj;
-        if(!p) return;
+        let p = this.$route.params.obj || {id:this.$route.query.id};
+        if(!p.id) return;
         console.log(p)
         apis.sounds.readOneSound({id:p.id}).then(res=>{
           console.log('res',res)
@@ -199,6 +209,7 @@ export default {
         formData.append("sound", params.file);
         formData.append("a", 1);
         formData.append("b", 2);
+        console.log('params',params.file.name)
 
         // if (!isLt2M) {
         //   this.$message.error("请上传2M以下的.xlsx文件");
@@ -207,9 +218,21 @@ export default {
 
         apis.upload.up(formData).then((res)=>{
           console.log('res',res)
+          this.$set(this.form,'file_name',res.data.data.file_name);
+          this.$set(this.form,'path',res.data.data.path);
+          this.$set(this.form,'name',params.file.name.split('.')[0]);
         }).catch(err=>{
           console.log('err',err)
         })
+      },
+      submitUpload() {
+        this.$refs.upload.submit();
+      },
+      handlePreview(file) {
+        let f = file.raw;
+        this.audio.url = window.URL.createObjectURL(f);
+        this.audio.name = `${f.name}`;
+        this.$refs.aplayer.play();
       },
       imgUploadChange(){
 
@@ -218,6 +241,10 @@ export default {
     mounted(){
         this.getCategoryList()
         this.readOneSound();
+        console.log('mounted',this.$route)
+    },
+    created(){
+      console.log('created',this.$route)
     },
     computed:{
 

@@ -9,7 +9,7 @@
                             {{t.name.toUpperCase()}}
                         </div>
                         <div class="info">
-                            <span>15个产品</span>
+                            <span>{{t.sounds_num}}个音效</span>
                         </div>
                     </div>
                     <!-- 编辑按钮 -->
