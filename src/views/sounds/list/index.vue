@@ -59,7 +59,6 @@
 
       <el-table
         :data="list"
-        @expand-change="tableExpandChange"
         style="width: 100%">
         <el-table-column type="expand">
           <template slot-scope="props">
@@ -228,14 +227,6 @@ export default {
           console.log('err',err)
         })
       },
-      getTagList(){
-        apis.tag.read().then(res=>{
-          console.log('res',res)
-          this.tags = res.data.data
-        }).catch(err=>{
-          console.log('err',err)
-        })
-      },
       getCategoryList(){
         apis.category.read(0).then(res=>{
           console.log('res',res)
@@ -261,22 +252,19 @@ export default {
         this.getList(false)
         console.log(`当前页: ${val}`);
       },
-      play(i,r){
-        
-        this.audio.url = `http://zbmusic.com/sounds/2020/${r.path}`;
-        this.audio.name = `${r.name}`;
+      play(i,item){
+
+        let full_path = `http://zbmusic.com/${item.path}`;
+				if(typeof item.hostname != "undefined" && item.hostname != '' && item.hostname !=null){
+					full_path = `${item.hostname}/${item.path}`;
+				}
+				if(typeof item.full_path != "undefined" && item.full_path != '' && item.full_path !=null){
+					full_path = item.full_path;
+				}
+        this.audio.url = full_path;
+        this.audio.name = `${item.name}`;
         this.$refs.aplayer.play();
         // audio.play();
-      },
-      tableExpandChange(row,expand){
-        apis.sku.readOneProductSkuInfo({'id':row.id}).then(res=>{
-          console.log('res',res)
-          // this.$set(row,'skus',res.data.data)
-          row.skus = res.data.data
-        }).catch(err=>{
-          console.log('err',err)
-        })
-        console.log(row,expand)
       },
       addObj(){
         this.$router.push({name:'addSound'})

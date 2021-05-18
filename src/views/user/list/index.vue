@@ -91,9 +91,10 @@
         </el-col>
       </el-row>
 
+              <!-- @expand-change="tableExpandChange" -->
       <el-table
         :data="list"
-        @expand-change="tableExpandChange"
+
         style="width: 100%">
         <el-table-column type="expand">
           <template slot-scope="props">
@@ -309,22 +310,6 @@ export default {
           console.log('err',err)
         })
       },
-      getTagList(){
-        apis.tag.read().then(res=>{
-          console.log('res',res)
-          this.tags = res.data.data
-        }).catch(err=>{
-          console.log('err',err)
-        })
-      },
-      getSupplierList(){
-        apis.supplier.read().then(res=>{
-          console.log('res',res)
-          this.suppliers = res.data.data
-        }).catch(err=>{
-          console.log('err',err)
-        })
-      },
       handleEdit(index, row) {
         this.$router.push({name:'updateUser',params:{obj:row}})
         console.log(index, row);
@@ -342,27 +327,16 @@ export default {
         this.getList(false)
         console.log(`当前页: ${val}`);
       },
-      readOneProductSkuInfo(){
 
-      },
-      tableExpandChange(row,expand){
-        apis.sku.readOneProductSkuInfo({'id':row.id}).then(res=>{
-          console.log('res',res)
-          // this.$set(row,'skus',res.data.data)
-          row.skus = res.data.data
-        }).catch(err=>{
-          console.log('err',err)
-        })
-        console.log(row,expand)
-      },
+      // tableExpandChange(row,expand){
+
+      // },
       addProduct(){
         this.$router.push({name:'addProduct'})
       }
     },
     mounted(){
       this.getList()
-      this.getTagList()
-      this.getSupplierList()
 
     }
 }

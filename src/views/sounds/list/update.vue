@@ -45,6 +45,7 @@
                       </el-input>
                   </el-col>
                 </el-row>
+
                 <el-row :gutter="20" class="mt10">
                   <el-col :span="24">
                       <el-input placeholder="请输入内容" v-model="form.path" :disabled="false">
@@ -52,6 +53,23 @@
                       </el-input>
                   </el-col>
                 </el-row>
+
+                <el-row :gutter="20" class="mt10">
+                  <el-col :span="24">
+                      <el-input placeholder="请输入内容" v-model="form.hostname" :disabled="false">
+                        <template slot="prepend">hostname</template>
+                      </el-input>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="20" class="mt10">
+                  <el-col :span="24">
+                      <el-input placeholder="请输入内容" v-model="form.full_path" :disabled="false">
+                        <template slot="prepend">完整地址</template>
+                      </el-input>
+                  </el-col>
+                </el-row>
+
                 <el-input
                   type="textarea"
                   style="margin-top:10px"
@@ -116,7 +134,7 @@
               </el-option>
             </el-select>
             <p class="p-extra mb5">分类</p>
-            <el-select v-model="form.classify" placeholder="请选择分类" style="width:100%">
+            <el-select v-model="form.category_id" placeholder="请选择分类" style="width:100%">
               <el-option
                 v-for="item in category_list"
                 :key="item.id"
